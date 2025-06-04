@@ -1,9 +1,8 @@
 import Link from "next/link";
 import Button from "./ui/Button";
-import { Post } from "@/types";
 
 interface PostItemProps {
-  post: Post;
+  post: any;
 }
 
 export default function PostItem({ post }: PostItemProps) {

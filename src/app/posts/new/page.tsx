@@ -2,13 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import PostForm from "@/components/PostForm";
-import { PostFormData } from "@/types";
 import { createPost } from "@/lib/api";
 
 export default function NewPostPage() {
   const router = useRouter();
 
-  const handleSubmit = async (data: PostFormData): Promise<void> => {
+  const handleSubmit = async (data: any): Promise<void> => {
     try {
       const newPost = await createPost(data);
       // 생성된 게시글 상세 페이지로 이동

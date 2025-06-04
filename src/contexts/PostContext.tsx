@@ -8,18 +8,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { Post } from "@/types";
-
-// Context 타입 정의 (type alias)
-type PostContextType = {
-  posts: Post[];
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  error: string | null;
-  setError: React.Dispatch<React.SetStateAction<string | null>>;
-  refreshPosts: () => Promise<void>;
-};
+// import { Post } from "@/types";
 
 // Context Provider Props 인터페이스
 interface PostProviderProps {
@@ -27,12 +16,20 @@ interface PostProviderProps {
 }
 
 // Context 생성
-const PostContext = createContext<PostContextType | undefined>(undefined);
+const PostContext = createContext({
+  posts: [],
+  setPosts: () => {},
+  loading: false,
+  setLoading: () => {},
+  error: null,
+  setError: () => {},
+  refreshPosts: () => Promise.resolve(),
+});
 
 // Context Provider 컴포넌트
 export function PostProvider({ children }: PostProviderProps) {
   // useState 타입 정의 예시
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -66,7 +63,7 @@ export function PostProvider({ children }: PostProviderProps) {
     }
   };
 
-  const contextValue: PostContextType = {
+  const contextValue = {
     posts,
     setPosts,
     loading,
@@ -82,8 +79,8 @@ export function PostProvider({ children }: PostProviderProps) {
 }
 
 // useContext 훅 타입 정의 예시
-export function usePostContext(): PostContextType {
-  const context: PostContextType | undefined = useContext(PostContext);
+export function usePostContext() {
+  const context = useContext(PostContext);
 
   if (context === undefined) {
     throw new Error("usePostContext must be used within a PostProvider");

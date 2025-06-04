@@ -1,7 +1,5 @@
 "use client";
 
-import { ButtonProps } from "@/types";
-
 export default function Button({
   children,
   onClick,
@@ -10,7 +8,7 @@ export default function Button({
   disabled = false,
   className = "",
   ...props
-}: ButtonProps) {
+}: any) {
   const baseStyles =
     "px-4 py-2 rounded font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors";
 

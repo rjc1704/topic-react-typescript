@@ -2,14 +2,7 @@ import { notFound } from "next/navigation";
 import PostDetail from "@/components/PostDetail";
 import { fetchPost } from "@/lib/api";
 
-// 페이지 Props 인터페이스
-interface PostPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params }: any) {
   const { id } = await params;
   if (!id) {
     notFound();

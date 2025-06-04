@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { notFound } from "next/navigation";
 import PostForm from "@/components/PostForm";
-import { PostFormData, Post } from "@/types";
 import { fetchPost, updatePost } from "@/lib/api";
 
 export default function EditPostPage() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const router = useRouter();
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,7 +32,7 @@ export default function EditPostPage() {
     loadPost();
   }, [id]);
 
-  const handleSubmit = async (data: PostFormData): Promise<void> => {
+  const handleSubmit = async (data: any): Promise<void> => {
     if (!post) return;
 
     setIsSubmitting(true);

@@ -1,8 +1,8 @@
-import { Post, PostFormData, ApiError } from "@/types";
+// import { Post, PostFormData, ApiError } from "@/types";
 
 // 커스텀 에러 클래스
 class ApiException extends Error {
-  constructor(public error: ApiError) {
+  constructor(public error: any) {
     super(error.message);
     this.name = "ApiException";
   }
@@ -11,7 +11,7 @@ class ApiException extends Error {
 // API 응답 처리 헬퍼
 async function handleApiResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
-    const errorData: ApiError = {
+    const errorData: any = {
       message: `HTTP Error: ${response.status} ${response.statusText}`,
       status: response.status,
     };
@@ -21,7 +21,7 @@ async function handleApiResponse<T>(response: Response): Promise<T> {
   try {
     return await response.json();
   } catch {
-    const parseError: ApiError = {
+    const parseError: any = {
       message: "Failed to parse JSON response",
       status: response.status,
     };
@@ -30,18 +30,18 @@ async function handleApiResponse<T>(response: Response): Promise<T> {
 }
 
 // 모든 포스트 조회
-export async function fetchPosts(): Promise<Post[]> {
+export async function fetchPosts(): Promise<any[]> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts`,
     );
-    return await handleApiResponse<Post[]>(response);
+    return await handleApiResponse<any[]>(response);
   } catch (error) {
     if (error instanceof ApiException) {
       throw error;
     }
 
-    const networkError: ApiError = {
+    const networkError: any = {
       message: "Network error: Unable to fetch posts",
       status: 0,
     };
@@ -50,18 +50,18 @@ export async function fetchPosts(): Promise<Post[]> {
 }
 
 // 특정 포스트 조회
-export async function fetchPost(id: Post["id"]): Promise<Post> {
+export async function fetchPost(id: any): Promise<any> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts/${id}`,
     );
-    return await handleApiResponse<Post>(response);
+    return await handleApiResponse<any>(response);
   } catch (error) {
     if (error instanceof ApiException) {
       throw error;
     }
 
-    const networkError: ApiError = {
+    const networkError: any = {
       message: `Network error: Unable to fetch post ${id}`,
       status: 0,
     };
@@ -70,7 +70,7 @@ export async function fetchPost(id: Post["id"]): Promise<Post> {
 }
 
 // 새 포스트 생성
-export async function createPost(postData: PostFormData): Promise<Post> {
+export async function createPost(postData: any): Promise<any> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts`,
@@ -82,13 +82,13 @@ export async function createPost(postData: PostFormData): Promise<Post> {
         body: JSON.stringify(postData),
       },
     );
-    return await handleApiResponse<Post>(response);
+    return await handleApiResponse<any>(response);
   } catch (error) {
     if (error instanceof ApiException) {
       throw error;
     }
 
-    const networkError: ApiError = {
+    const networkError: any = {
       message: "Network error: Unable to create post",
       status: 0,
     };
@@ -97,10 +97,7 @@ export async function createPost(postData: PostFormData): Promise<Post> {
 }
 
 // 포스트 수정
-export async function updatePost(
-  id: Post["id"],
-  postData: PostFormData,
-): Promise<Post> {
+export async function updatePost(id: any, postData: any): Promise<any> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts/${id}`,
@@ -112,13 +109,13 @@ export async function updatePost(
         body: JSON.stringify({ ...postData, id }),
       },
     );
-    return await handleApiResponse<Post>(response);
+    return await handleApiResponse<any>(response);
   } catch (error) {
     if (error instanceof ApiException) {
       throw error;
     }
 
-    const networkError: ApiError = {
+    const networkError: any = {
       message: `Network error: Unable to update post ${id}`,
       status: 0,
     };
@@ -127,7 +124,7 @@ export async function updatePost(
 }
 
 // 포스트 삭제
-export async function deletePost(id: Post["id"]): Promise<void> {
+export async function deletePost(id: any): Promise<void> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts/${id}`,
@@ -141,7 +138,7 @@ export async function deletePost(id: Post["id"]): Promise<void> {
       throw error;
     }
 
-    const networkError: ApiError = {
+    const networkError: any = {
       message: `Network error: Unable to delete post ${id}`,
       status: 0,
     };

@@ -2,17 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { PostDetailProps, ButtonClickEvent } from "@/types";
 import { deletePost } from "@/lib/api";
 import Button from "@/components/ui/Button";
 
-export default function PostDetail({ post, className = "" }: PostDetailProps) {
+export default function PostDetail({ post, className = "" }: any) {
   // useState 타입 정의 예시
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   // 이벤트 타입 정의 예시
-  const handleDelete = async (event: ButtonClickEvent): Promise<void> => {
+  const handleDelete = async (event: any): Promise<void> => {
     event.preventDefault();
 
     if (!confirm("정말로 이 게시글을 삭제하시겠습니까?")) {

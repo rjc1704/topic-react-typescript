@@ -1,14 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import {
-  PostFormProps,
-  PostFormData,
-  InputChangeEvent,
-  TextareaChangeEvent,
-  SelectChangeEvent,
-  FormSubmitEvent,
-} from "@/types";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
@@ -18,42 +10,42 @@ export default function PostForm({
   initialData = {},
   isLoading = false,
   className = "",
-}: PostFormProps) {
+}: any) {
   // useState 타입 정의 예시
-  const [formData, setFormData] = useState<PostFormData>({
+  const [formData, setFormData] = useState<any>({
     title: initialData.title || "",
     content: initialData.content || "",
     authorId: initialData.authorId || 1,
   });
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<any>(null);
 
   // useRef 타입 정의 예시
   const titleInputRef = useRef<HTMLInputElement>(null);
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   // 이벤트 타입 정의 예시들
-  const handleTitleChange = (event: InputChangeEvent): void => {
-    setFormData((prev) => ({
+  const handleTitleChange = (event: any): void => {
+    setFormData((prev: any) => ({
       ...prev,
       title: event.target.value,
     }));
   };
 
-  const handleContentChange = (event: TextareaChangeEvent): void => {
-    setFormData((prev) => ({
+  const handleContentChange = (event: any): void => {
+    setFormData((prev: any) => ({
       ...prev,
       content: event.target.value,
     }));
   };
 
-  const handleAuthorChange = (event: SelectChangeEvent): void => {
-    setFormData((prev) => ({
+  const handleAuthorChange = (event: any): void => {
+    setFormData((prev: any) => ({
       ...prev,
       authorId: Number(event.target.value),
     }));
   };
 
-  const handleSubmit = async (event: FormSubmitEvent): Promise<void> => {
+  const handleSubmit = async (event: any): Promise<void> => {
     event.preventDefault();
     setError(null);
 

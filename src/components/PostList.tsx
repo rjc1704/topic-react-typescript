@@ -2,19 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Post, PostListProps } from "@/types";
 import { fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
 
-export default function PostList({
-  posts: initialPosts = [],
-  className = "",
-}: PostListProps) {
+export default function PostList({ posts: initialPosts = [], className = "" }) {
   // useState 타입 정의 예시
-  const [posts, setPosts] = useState<Post[]>(initialPosts);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [posts, setPosts] = useState<any[]>(initialPosts);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<any>(null);
 
   // useEffect 타입 정의 예시
   useEffect((): void => {
@@ -28,7 +24,7 @@ export default function PostList({
     setError(null);
 
     try {
-      const fetchedPosts: Post[] = await fetchPosts();
+      const fetchedPosts: any[] = await fetchPosts();
       setPosts(fetchedPosts);
     } catch (err) {
       const errorMessage: string =
@@ -79,7 +75,7 @@ export default function PostList({
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post: Post) => (
+        {posts.map((post) => (
           <PostItem key={post.id} post={post} />
         ))}
       </div>
