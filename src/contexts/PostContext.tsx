@@ -3,18 +3,8 @@
 import { createContext, useContext, useRef, useEffect, useState } from "react";
 import { Post } from "@/types";
 
-interface PostContextType {
-  posts: Post[];
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  error: string | null;
-  setError: React.Dispatch<React.SetStateAction<string | null>>;
-  refreshPosts: () => Promise<void>;
-}
-
 // Context 생성
-const PostContext = createContext<PostContextType>({
+const PostContext = createContext<any>({
   posts: [],
   setPosts: () => {},
   loading: false,
@@ -24,12 +14,8 @@ const PostContext = createContext<PostContextType>({
   refreshPosts: () => Promise.resolve(),
 });
 
-interface PostProviderProps {
-  children: React.ReactNode;
-}
-
 // Context Provider 컴포넌트
-export function PostProvider({ children }: PostProviderProps) {
+export function PostProvider({ children }: any) {
   // useState 타입 정의 예시
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
