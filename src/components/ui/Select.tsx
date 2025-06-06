@@ -8,6 +8,7 @@ interface SelectProps {
   required?: boolean;
   name: string;
   className?: string;
+  disabled?: boolean;
 }
 export default function Select({
   value,
@@ -16,6 +17,7 @@ export default function Select({
   placeholder = "",
   required = false,
   name,
+  disabled = false,
   className = "",
   ...props
 }: SelectProps) {
@@ -28,6 +30,7 @@ export default function Select({
       onChange={onChange}
       required={required}
       name={name}
+      disabled={disabled}
       className={`${baseStyles} ${className}`}
       {...props}
     >
