@@ -11,6 +11,7 @@ export default function Select({
   required = false,
   name,
   className = "",
+  disabled = false,
   ...props
 }: any) {
   const baseStyles =
@@ -22,6 +23,7 @@ export default function Select({
       onChange={onChange}
       required={required}
       name={name}
+      disabled={disabled}
       className={`${baseStyles} ${className}`}
       {...props}
     >
