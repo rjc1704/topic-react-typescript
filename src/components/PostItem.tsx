@@ -1,11 +1,7 @@
 import Link from "next/link";
 import Button from "./ui/Button";
 
-interface PostItemProps {
-  post: any;
-}
-
-export default function PostItem({ post }: PostItemProps) {
+export default function PostItem({ post }: any) {
   return (
     <div
       key={post.id}

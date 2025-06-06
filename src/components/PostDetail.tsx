@@ -5,7 +5,7 @@ import Link from "next/link";
 import { deletePost } from "@/lib/api";
 import Button from "@/components/ui/Button";
 
-export default function PostDetail({ post, className = "" }: any) {
+export default function PostDetail({ post }: any) {
   // useState 타입 정의 예시
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +35,7 @@ export default function PostDetail({ post, className = "" }: any) {
   };
 
   return (
-    <article className={`max-w-4xl mx-auto ${className}`}>
+    <article className="max-w-4xl mx-auto">
       {/* 헤더 */}
       <header className="mb-8">
         <div className="flex justify-between items-start mb-4">

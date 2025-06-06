@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "React Hooks 완전 정복",
-      "content": "React Hooks는 함수형 컴포넌트에서 상태와 생명주기를 관리할 수 있게 해주는 기능입니다.\n\n주요 Hooks:\n- useState: 상태 관리\n- useEffect: 부수 효과 처리\n- useContext: 컨텍스트 사용\n- useRef: DOM 참조\n- useMemo: 메모이제이션\n- useCallback: 함수 메모이제이션\n\n각각의 Hook은 특정한 용도와 사용법이 있으니 잘 이해하고 사용해야 합니다.",
+      "content": "React Hooks는 함수형 컴포넌트에서 상태와 생명주기를 관리할 수 있게 해주는 기능입니다.\n\n주요 Hooks:\n- useState: 상태 관리\n- useEffect: 부수 효과 처리\n- useContext: 컨텍스트 사용\n- useRef: DOM 참조\n- useMemo: 메모이제이션\n- useCallback: 함수 메모이제이션\n\n각각의 Hook은 특정한 용도와 사용법이 있으니 잘 이해하고 사용해야 합니다!",
       "authorId": 2
     },
     {

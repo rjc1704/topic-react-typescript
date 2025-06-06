@@ -9,7 +9,6 @@ export default function PostForm({
   onSubmit,
   initialData = {},
   isLoading = false,
-  className = "",
 }: any) {
   // useState 타입 정의 예시
   const [formData, setFormData] = useState<any>({
@@ -81,10 +80,7 @@ export default function PostForm({
   const isEditMode = Boolean(initialData.title);
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`max-w-2xl mx-auto space-y-6 ${className}`}
-    >
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
       <div className="mb-8">
         <h2 className="text-2xl font-bold">
           {initialData.title ? "게시글 수정" : "새 게시글 작성"}

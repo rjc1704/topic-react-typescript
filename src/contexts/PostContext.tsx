@@ -10,11 +10,6 @@ import {
 } from "react";
 // import { Post } from "@/types";
 
-// Context Provider Props 인터페이스
-interface PostProviderProps {
-  children: ReactNode;
-}
-
 // Context 생성
 const PostContext = createContext({
   posts: [],
@@ -27,7 +22,7 @@ const PostContext = createContext({
 });
 
 // Context Provider 컴포넌트
-export function PostProvider({ children }: PostProviderProps) {
+export function PostProvider({ children }: any) {
   // useState 타입 정의 예시
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-// import { Post, PostFormData, ApiError } from "@/types";
+// import { Post, ApiError } from "@/types";
 
 // 커스텀 에러 클래스
 class ApiException extends Error {
