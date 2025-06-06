@@ -6,7 +6,7 @@
 
 export default function Button({
   children,
-  onClick,
+  onClick = () => {},
   type = "button",
   variant = "primary",
   disabled = false,
