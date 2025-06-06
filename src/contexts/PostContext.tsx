@@ -32,11 +32,11 @@ interface PostProviderProps {
 export function PostProvider({ children }: PostProviderProps) {
   // useState 타입 정의 예시
   const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<any>(null);
 
   // useRef 타입 정의 예시
-  const mountedRef = useRef<boolean>(false);
+  const mountedRef = useRef(false);
 
   // useEffect 타입 정의 예시
   useEffect((): (() => void) => {
