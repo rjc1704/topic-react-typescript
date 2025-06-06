@@ -1,20 +1,20 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useRef,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
-// import { Post } from "@/types";
+import { createContext, useContext, useRef, useEffect, useState } from "react";
+import { Post } from "@/types";
 
-// TODO-8: PostContextType 타입을 정의하세요.
-// post 타입은 src/types/index.ts 에 Post 타입을 정의 후 import 하여 사용하세요.
+interface PostContextType {
+  posts: Post[];
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  error: string | null;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
+  refreshPosts: () => Promise<void>;
+}
 
 // Context 생성
-const PostContext = createContext<any>({
+const PostContext = createContext<PostContextType>({
   posts: [],
   setPosts: () => {},
   loading: false,
@@ -24,10 +24,12 @@ const PostContext = createContext<any>({
   refreshPosts: () => Promise.resolve(),
 });
 
-// TODO-9: PostProvider 의 props 타입을 정의하세요.
+interface PostProviderProps {
+  children: React.ReactNode;
+}
 
 // Context Provider 컴포넌트
-export function PostProvider({ children }: any) {
+export function PostProvider({ children }: PostProviderProps) {
   // useState 타입 정의 예시
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

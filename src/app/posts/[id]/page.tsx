@@ -2,9 +2,13 @@ import { notFound } from "next/navigation";
 import PostDetail from "@/components/PostDetail";
 import { fetchPost } from "@/lib/api";
 
-// TODO-1: props 타입을 정의하세요. interface 사용하세요.
+interface PostPageProps {
+  params: {
+    id: string;
+  };
+}
 
-export default async function PostPage({ params }: any) {
+export default async function PostPage({ params }: PostPageProps) {
   const { id } = await params;
   if (!id) {
     notFound();

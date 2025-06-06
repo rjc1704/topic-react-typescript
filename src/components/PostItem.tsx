@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Button from "./ui/Button";
+import { Post } from "@/types";
 
-// TODO-4: props 타입을 정의하세요. interface 사용하세요.
+interface PostItemProps {
+  post: Post;
+}
 
-export default function PostItem({ post }: any) {
+export default function PostItem({ post }: PostItemProps) {
   return (
     <div
       key={post.id}

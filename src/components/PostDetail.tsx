@@ -4,10 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { deletePost } from "@/lib/api";
 import Button from "@/components/ui/Button";
+import { Post } from "@/types";
 
-// TODO-2: props 타입을 정의하세요. interface 사용하세요.
+interface PostDetailProps {
+  post: Post;
+}
 
-export default function PostDetail({ post }: any) {
+export default function PostDetail({ post }: PostDetailProps) {
   // useState 타입 정의 예시
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

@@ -1,9 +1,13 @@
 "use client";
 
-// TODO-5: props 타입을 정의하세요. interface 사용하세요.
-// type 은 union type 으로 "button" | "submit" | "reset" 으로 정의하세요.
-// variant 는 "primary" | "secondary" | "danger" 으로 정의하세요.
-
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary" | "danger";
+  disabled?: boolean;
+  className?: string;
+}
 export default function Button({
   children,
   onClick,
@@ -12,7 +16,7 @@ export default function Button({
   disabled = false,
   className = "",
   ...props
-}: any) {
+}: ButtonProps) {
   const baseStyles =
     "px-4 py-2 rounded font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors";
 
