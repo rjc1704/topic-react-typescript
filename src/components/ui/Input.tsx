@@ -14,7 +14,7 @@ export default function Input({
   type = "text",
   value,
   onChange,
-  placeholder,
+  placeholder = "",
   required = false,
   name,
   className = "",
