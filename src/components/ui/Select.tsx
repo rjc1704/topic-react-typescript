@@ -1,7 +1,7 @@
 "use client";
 
 // TODO-7: props 타입을 정의하세요. interface 사용하세요.
-// options 는 { value: string; label: string }[] 으로 정의하세요.
+// options 는 { value: number; label: string }[] 으로 정의하세요.
 
 export default function Select({
   value,
