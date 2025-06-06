@@ -7,7 +7,7 @@ export default function Select({
   value,
   onChange,
   options,
-  placeholder,
+  placeholder = "",
   required = false,
   name,
   className = "",
