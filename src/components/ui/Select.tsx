@@ -3,7 +3,7 @@
 interface SelectProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { value: string; label: string }[];
+  options: { value: number; label: string }[];
   placeholder?: string;
   required?: boolean;
   name: string;
@@ -13,7 +13,7 @@ export default function Select({
   value,
   onChange,
   options,
-  placeholder,
+  placeholder = "",
   required = false,
   name,
   className = "",
