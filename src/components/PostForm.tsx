@@ -8,8 +8,8 @@ import { Post } from "@/types";
 
 interface PostFormProps {
   onSubmit: (formData: Omit<Post, "id">) => Promise<void>;
-  initialData: Partial<Omit<Post, "id">>;
-  isLoading: boolean;
+  initialData?: Partial<Omit<Post, "id">>;
+  isLoading?: boolean;
 }
 
 export default function PostForm({
