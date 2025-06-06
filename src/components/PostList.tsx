@@ -6,23 +6,22 @@ import { fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
 
-export default function PostList({ posts: initialPosts = [], className = "" }) {
+export default function PostList() {
   // useState 타입 정의 예시
-  const [posts, setPosts] = useState<any[]>(initialPosts);
-  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
 
   // useEffect 타입 정의 예시
   useEffect((): void => {
-    if (initialPosts.length === 0) {
+    if (posts.length === 0) {
       loadPosts();
     }
-  }, [initialPosts.length]);
+  }, [posts.length]);
 
   const loadPosts = async (): Promise<void> => {
-    setLoading(true);
     setError(null);
-
+    setLoading(true);
     try {
       const fetchedPosts: any[] = await fetchPosts();
       setPosts(fetchedPosts);
@@ -37,7 +36,7 @@ export default function PostList({ posts: initialPosts = [], className = "" }) {
 
   if (loading) {
     return (
-      <div className={`flex justify-center items-center py-8 ${className}`}>
+      <div className="flex justify-center items-center py-8">
         <div className="text-gray-500">로딩 중...</div>
       </div>
     );
@@ -45,8 +44,10 @@ export default function PostList({ posts: initialPosts = [], className = "" }) {
 
   if (error) {
     return (
-      <div className={`text-center py-8 ${className}`}>
-        <div className="text-red-500 mb-4">오류: {error}</div>
+      <div className="text-center py-8">
+        <div className="text-red-500 mb-4">
+          오류: {error || "Unknown error"}
+        </div>
         <Button onClick={loadPosts} variant="primary">
           다시 시도
         </Button>
@@ -56,7 +57,7 @@ export default function PostList({ posts: initialPosts = [], className = "" }) {
 
   if (posts.length === 0) {
     return (
-      <div className={`text-center py-8 ${className}`}>
+      <div className="text-center py-8">
         <div className="text-gray-500 mb-4">게시글이 없습니다.</div>
         <Link href="/posts/new">
           <Button variant="primary">첫 번째 글 작성하기</Button>
@@ -66,7 +67,7 @@ export default function PostList({ posts: initialPosts = [], className = "" }) {
   }
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className="space-y-4">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">블로그 글 목록</h2>
         <Link href="/posts/new">
