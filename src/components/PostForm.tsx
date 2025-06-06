@@ -5,6 +5,8 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 
+// TODO-3: props 타입을 정의하세요. interface 사용하세요.
+
 export default function PostForm({
   onSubmit,
   initialData = {},

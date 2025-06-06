@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Button from "./ui/Button";
 
+// TODO-4: props 타입을 정의하세요. interface 사용하세요.
+
 export default function PostItem({ post }: any) {
   return (
     <div

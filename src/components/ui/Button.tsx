@@ -1,5 +1,9 @@
 "use client";
 
+// TODO-5: props 타입을 정의하세요. interface 사용하세요.
+// type 은 union type 으로 "button" | "submit" | "reset" 으로 정의하세요.
+// variant 는 "primary" | "secondary" | "danger" 으로 정의하세요.
+
 export default function Button({
   children,
   onClick,
