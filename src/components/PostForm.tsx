@@ -26,10 +26,10 @@ export default function PostForm({
   const [error, setError] = useState<any>(null);
 
   // useRef 타입 정의 예시
-  const titleInputRef = useRef<HTMLInputElement>(null);
-  const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const titleInputRef = useRef(null);
+  const contentTextareaRef = useRef(null);
 
-  // 이벤트 타입 정의 예시들
+  // TODO-1 : 아래 4개의 이벤트 핸들러 함수의 이벤트 타입을 각각 정의하세요
   const handleTitleChange = (event: any): void => {
     setFormData((prev: any) => ({
       ...prev,

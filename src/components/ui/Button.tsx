@@ -2,7 +2,7 @@
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "danger";
   disabled?: boolean;
@@ -10,7 +10,7 @@ interface ButtonProps {
 }
 export default function Button({
   children,
-  onClick,
+  onClick = () => {},
   type = "button",
   variant = "primary",
   disabled = false,

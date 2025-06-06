@@ -15,7 +15,7 @@ export default function PostDetail({ post }: PostDetailProps) {
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 이벤트 타입 정의 예시
+  // TODO-2 : 아래 이벤트 핸들러 함수의 이벤트 타입을 정의하세요
   const handleDelete = async (event: any): Promise<void> => {
     event.preventDefault();
 
