@@ -11,10 +11,8 @@ interface PostDetailProps {
 }
 
 export default function PostDetail({ post }: PostDetailProps) {
-  // TODO-2: useState 의 초기 상태값의 타입을 제네릭으로 정의하세요.
-  // 현재 모듈 파일의 모든 타입 오류를 해결하세요.
   const [isDeleting, setIsDeleting] = useState(false);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleDelete = async (): Promise<void> => {
     if (!confirm("정말로 이 게시글을 삭제하시겠습니까?")) {

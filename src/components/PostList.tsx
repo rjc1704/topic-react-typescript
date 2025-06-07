@@ -5,13 +5,12 @@ import Link from "next/link";
 import { fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
+import { Post } from "@/types";
 
 export default function PostList() {
-  // TODO-1: useState 의 초기 상태값의 타입을 제네릭으로 각각 정의하세요.
-  // 현재 모듈 파일의 모든 타입 오류를 해결하세요.
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   // useEffect 타입 정의 예시
   useEffect((): void => {
@@ -24,7 +23,7 @@ export default function PostList() {
     setError(null);
     setLoading(true);
     try {
-      const fetchedPosts: any[] = await fetchPosts();
+      const fetchedPosts: Post[] = await fetchPosts();
       setPosts(fetchedPosts);
     } catch (err) {
       const errorMessage: string =

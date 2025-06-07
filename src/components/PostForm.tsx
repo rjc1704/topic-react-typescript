@@ -18,22 +18,20 @@ export default function PostForm({
   isLoading = false,
 }: PostFormProps) {
   // useState 타입 정의 예시
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<Omit<Post, "id">>({
     title: initialData.title || "",
     content: initialData.content || "",
     authorId: initialData.authorId || 1,
   });
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // TODO-3: useRef 의 타입을 제네릭으로 정의하세요.
-  // 현재 모듈 파일의 모든 타입 오류를 해결하세요.
-  const titleInputRef = useRef(null);
-  const contentTextareaRef = useRef(null);
+  const titleInputRef = useRef<HTMLInputElement>(null);
+  const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
-    setFormData((prev: any) => ({
+    setFormData((prev) => ({
       ...prev,
       title: event.target.value,
     }));
@@ -42,7 +40,7 @@ export default function PostForm({
   const handleContentChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ): void => {
-    setFormData((prev: any) => ({
+    setFormData((prev) => ({
       ...prev,
       content: event.target.value,
     }));
@@ -51,7 +49,7 @@ export default function PostForm({
   const handleAuthorChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
-    setFormData((prev: any) => ({
+    setFormData((prev) => ({
       ...prev,
       authorId: Number(event.target.value),
     }));
