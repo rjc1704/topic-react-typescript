@@ -12,8 +12,8 @@ interface PostDetailProps {
 
 export default function PostDetail({ post }: PostDetailProps) {
   // useState 타입 정의 예시
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [error, setError] = useState<any>(null);
 
   const handleDelete = async (): Promise<void> => {
     if (!confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
