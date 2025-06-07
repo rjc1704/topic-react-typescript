@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="container mx-auto px-4 py-8">
@@ -8,12 +10,13 @@ export default function Home() {
         <p className="text-gray-600 mb-4">
           TypeScript와 함께하는 블로그 학습 프로젝트입니다.
         </p>
-        <a
+
+        <Link
           href="/posts"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           블로그 글 보기
-        </a>
+        </Link>
       </div>
     </main>
   );

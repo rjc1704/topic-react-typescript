@@ -25,7 +25,8 @@ export default function PostForm({
   });
   const [error, setError] = useState<any>(null);
 
-  // useRef 타입 정의 예시
+  // TODO-3: useRef 의 타입을 제네릭으로 정의하세요.
+  // 현재 모듈 파일의 모든 타입 오류를 해결하세요.
   const titleInputRef = useRef(null);
   const contentTextareaRef = useRef(null);
 
