@@ -1,40 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
-import { Post } from "@/types";
+import { useQuery } from "@tanstack/react-query";
 
 export default function PostList() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  // TODO-1: useQuery 에 제네릭 타입을 적용해 보세요
+  const {
+    data: posts,
+    isPending,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+  });
 
-  // useEffect 타입 정의 예시
-  useEffect((): void => {
-    if (posts.length === 0) {
-      loadPosts();
-    }
-  }, [posts.length]);
-
-  const loadPosts = async (): Promise<void> => {
-    setError(null);
-    setLoading(true);
-    try {
-      const fetchedPosts: Post[] = await fetchPosts();
-      setPosts(fetchedPosts);
-    } catch (err) {
-      const errorMessage: string =
-        err instanceof Error ? err.message : "Failed to load posts";
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
+  if (isPending) {
     return (
       <div className="flex justify-center items-center py-8">
         <div className="text-gray-500">로딩 중...</div>
@@ -46,9 +30,9 @@ export default function PostList() {
     return (
       <div className="text-center py-8">
         <div className="text-red-500 mb-4">
-          오류: {error || "Unknown error"}
+          오류: {error.message || "Unknown error"}
         </div>
-        <Button onClick={loadPosts} variant="primary">
+        <Button onClick={() => refetch()} variant="primary">
           다시 시도
         </Button>
       </div>

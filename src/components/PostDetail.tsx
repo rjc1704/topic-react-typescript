@@ -1,38 +1,39 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { deletePost } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import { Post } from "@/types";
+import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface PostDetailProps {
   post: Post;
 }
 
 export default function PostDetail({ post }: PostDetailProps) {
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  // TODO-3: useMutation 에 제네릭 타입을 적용해 보세요
+  const {
+    mutate: deletePostMutation,
+    isPending: isDeleting,
+    error,
+  } = useMutation({
+    mutationFn: deletePost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      router.push("/posts");
+    },
+  });
 
   const handleDelete = async (): Promise<void> => {
     if (!confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
       return;
     }
 
-    setIsDeleting(true);
-    setError(null);
-
-    try {
-      await deletePost(post.id);
-      // 삭제 성공 시 리디렉션 (실제로는 router.push 사용)
-      window.location.href = "/posts";
-    } catch (err) {
-      const errorMessage: string =
-        err instanceof Error ? err.message : "Failed to delete post";
-      setError(errorMessage);
-    } finally {
-      setIsDeleting(false);
-    }
+    deletePostMutation(post.id);
   };
 
   return (
@@ -70,7 +71,7 @@ export default function PostDetail({ post }: PostDetailProps) {
       {/* 에러 메시지 */}
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-          오류: {error}
+          오류: {error.message}
         </div>
       )}
 
