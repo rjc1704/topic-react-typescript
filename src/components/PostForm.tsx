@@ -29,29 +29,36 @@ export default function PostForm({
   const titleInputRef = useRef(null);
   const contentTextareaRef = useRef(null);
 
-  // TODO-1 : 아래 4개의 이벤트 핸들러 함수의 이벤트 타입을 각각 정의하세요
-  const handleTitleChange = (event: any): void => {
+  const handleTitleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
     setFormData((prev: any) => ({
       ...prev,
       title: event.target.value,
     }));
   };
 
-  const handleContentChange = (event: any): void => {
+  const handleContentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ): void => {
     setFormData((prev: any) => ({
       ...prev,
       content: event.target.value,
     }));
   };
 
-  const handleAuthorChange = (event: any): void => {
+  const handleAuthorChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ): void => {
     setFormData((prev: any) => ({
       ...prev,
       authorId: Number(event.target.value),
     }));
   };
 
-  const handleSubmit = async (event: any): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
     setError(null);
 
