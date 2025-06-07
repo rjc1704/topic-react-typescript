@@ -7,3 +7,7 @@ export type Post = {
 };
 
 // API 에러 타입 (type alias)
+export type ApiError = {
+  message: string;
+  status: number;
+};

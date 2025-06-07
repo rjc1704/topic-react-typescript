@@ -6,6 +6,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold text-center mb-8">
         Next.js 블로그 프로젝트
       </h1>
+
       <div className="text-center">
         <p className="text-gray-600 mb-4">
           TypeScript와 함께하는 블로그 학습 프로젝트입니다.

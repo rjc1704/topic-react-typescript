@@ -3,9 +3,9 @@ import PostDetail from "@/components/PostDetail";
 import { fetchPost } from "@/lib/api";
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function PostPage({ params }: PostPageProps) {
