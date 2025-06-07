@@ -1,19 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { fetchPosts } from "@/lib/api";
+import { ApiException, fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
 import { useQuery } from "@tanstack/react-query";
+import { Post } from "@/types";
 
 export default function PostList() {
-  // TODO-1: useQuery 에 제네릭 타입을 적용해 보세요
   const {
     data: posts,
     isPending,
     error,
     refetch,
-  } = useQuery({
+  } = useQuery<Post[], ApiException, Post[]>({
     queryKey: ["posts"],
     queryFn: fetchPosts,
   });

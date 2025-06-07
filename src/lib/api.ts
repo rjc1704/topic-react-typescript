@@ -3,7 +3,7 @@
 import { ApiError, Post } from "@/types";
 
 // 커스텀 에러 클래스
-class ApiException extends Error {
+export class ApiException extends Error {
   constructor(public error: ApiError) {
     super(error.message);
     this.name = "ApiException";

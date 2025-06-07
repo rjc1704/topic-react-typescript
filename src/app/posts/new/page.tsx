@@ -2,20 +2,19 @@
 
 import { useRouter } from "next/navigation";
 import PostForm from "@/components/PostForm";
-import { createPost } from "@/lib/api";
+import { ApiException, createPost } from "@/lib/api";
 import { Post } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function NewPostPage() {
   const router = useRouter();
 
-  // TODO-2: useMutation 에 제네릭 타입을 적용해 보세요
   const queryClient = useQueryClient();
   const {
     mutate: createPostMutation,
     isPending,
     error,
-  } = useMutation({
+  } = useMutation<Post, ApiException, Omit<Post, "id">>({
     mutationFn: createPost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });

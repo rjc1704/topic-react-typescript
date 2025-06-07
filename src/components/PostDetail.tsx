@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { deletePost } from "@/lib/api";
+import { ApiException, deletePost } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import { Post } from "@/types";
 import { useRouter } from "next/navigation";
@@ -15,12 +15,11 @@ export default function PostDetail({ post }: PostDetailProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  // TODO-3: useMutation 에 제네릭 타입을 적용해 보세요
   const {
     mutate: deletePostMutation,
     isPending: isDeleting,
     error,
-  } = useMutation({
+  } = useMutation<void, ApiException, Post["id"]>({
     mutationFn: deletePost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
