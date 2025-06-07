@@ -1,7 +1,7 @@
 "use client";
 
 interface SelectProps {
-  value: string;
+  value: number;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   options: { value: number; label: string }[];
   placeholder?: string;
