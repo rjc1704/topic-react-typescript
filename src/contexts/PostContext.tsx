@@ -5,19 +5,10 @@ import { Post } from "@/types";
 
 // TODO-1: PostContextType 을 정의하고 적용하세요
 // - PostContextType 은 context value 의 타입을 의미합니다.
-// - createContext<any> 에서 any 대신 PostContextType 을 넣으세요
+// - createContext<any> 에서 any 대신 PostContextType | undefined 을 넣으세요
 // - setPosts, setLoading 과 같은 setState 함수의 타입은 useState 실행한 곳의 setPosts 에 마우스오버해서 타입확인해서 복사 붙여넣으세요
 
-// Context 생성
-const PostContext = createContext<any>({
-  posts: [],
-  setPosts: () => {},
-  loading: false,
-  setLoading: () => {},
-  error: null,
-  setError: () => {},
-  refreshPosts: () => Promise.resolve(),
-});
+const PostContext = createContext<any>(undefined);
 
 // TODO-2: PostProvider 의 props 타입을 정의하세요
 export function PostProvider({ children }: any) {
