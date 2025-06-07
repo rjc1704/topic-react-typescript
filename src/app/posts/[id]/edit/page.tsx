@@ -5,14 +5,14 @@ import { useParams, useRouter } from "next/navigation";
 import { notFound } from "next/navigation";
 import PostForm from "@/components/PostForm";
 import { fetchPost, updatePost } from "@/lib/api";
+import { Post } from "@/types";
 
 export default function EditPostPage() {
-  // TODO-4: useParams 와 useState 들의 타입을 제네릭으로 정의하세요.
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const [post, setPost] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [post, setPost] = useState<Post | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
     const loadPost = async () => {
@@ -33,7 +33,7 @@ export default function EditPostPage() {
     loadPost();
   }, [id]);
 
-  const handleSubmit = async (data: any): Promise<void> => {
+  const handleSubmit = async (data: Omit<Post, "id">): Promise<void> => {
     if (!post) return;
 
     setIsSubmitting(true);
