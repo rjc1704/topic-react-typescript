@@ -7,7 +7,8 @@ import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
 
 export default function PostList() {
-  // useState 타입 정의 예시
+  // TODO-1: useState 의 초기 상태값의 타입을 제네릭으로 각각 정의하세요.
+  // 현재 모듈 파일의 모든 타입 오류를 해결하세요.
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
