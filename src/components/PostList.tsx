@@ -1,21 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { ApiException, fetchPosts } from "@/lib/api";
+import { fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
-import { useQuery } from "@tanstack/react-query";
-import { Post } from "@/types";
+import { useInfiniteQuery } from "@tanstack/react-query";
+
+const POSTS_PER_PAGE = 5; // 페이지당 포스트 수
 
 export default function PostList() {
+  // TODO-1: useInfiniteQuery 에 제네릭 타입을 적용해 보세요
+  // 하나씩 vs code의 힌트 문구를 참고해서 제네릭 타입을 적용해 보세요
   const {
     data: posts,
     isPending,
     error,
     refetch,
-  } = useQuery<Post[], ApiException, Post[]>({
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ["posts"],
-    queryFn: fetchPosts,
+    queryFn: ({ pageParam }) => fetchPosts(pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      // 마지막 페이지의 아이템 수가 POSTS_PER_PAGE보다 적으면 더 이상 페이지가 없음
+      if (lastPage.length < POSTS_PER_PAGE) {
+        return undefined;
+      }
+      return allPages.length + 1; // 다음 페이지 번호 (1-based)
+    },
+    initialPageParam: 1, // 첫 번째 페이지는 1
+    select: (data) => data.pages.flat(),
   });
 
   if (isPending) {
@@ -64,6 +79,19 @@ export default function PostList() {
           <PostItem key={post.id} post={post} />
         ))}
       </div>
+
+      {/* 더보기 버튼 */}
+      {hasNextPage && (
+        <div className="flex justify-center mt-8">
+          <Button
+            onClick={() => fetchNextPage()}
+            variant="secondary"
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? "로딩 중..." : "더보기"}
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

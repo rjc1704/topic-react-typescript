@@ -31,11 +31,11 @@ async function handleApiResponse<T>(response: Response): Promise<T> {
   }
 }
 
-// 모든 포스트 조회
-export async function fetchPosts(): Promise<Post[]> {
+// 모든 포스트 조회 (페이지네이션)
+export async function fetchPosts(page: number = 1): Promise<Post[]> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?_page=${page}&_limit=6`,
     );
     return await handleApiResponse<Post[]>(response);
   } catch (error) {

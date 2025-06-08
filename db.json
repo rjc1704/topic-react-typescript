@@ -29,6 +29,48 @@
       "title": "React 상태 관리 전략",
       "content": "React 애플리케이션의 상태 관리는 중요한 주제입니다.\n\n상태 관리 도구들:\n- Context API: 간단한 전역 상태\n- Redux: 복잡한 상태 관리\n- Zustand: 가벼운 상태 관리\n- Recoil: Facebook의 상태 관리\n- Jotai: 원자적 상태 관리\n\n프로젝트 규모와 요구사항에 맞는 도구를 선택해야 합니다.",
       "authorId": 2
+    },
+    {
+      "title": "추가1",
+      "content": "asdf\n",
+      "authorId": 1,
+      "id": "7G5x5fQ"
+    },
+    {
+      "title": "추가2",
+      "content": "zzzz",
+      "authorId": 1,
+      "id": "2D0AhGs"
+    },
+    {
+      "title": "추가3",
+      "content": "3",
+      "authorId": 1,
+      "id": "SFUfflS"
+    },
+    {
+      "title": "추가4",
+      "content": "추가4",
+      "authorId": 3,
+      "id": "yypj9Rq"
+    },
+    {
+      "title": "추가5",
+      "content": "5",
+      "authorId": 2,
+      "id": "1234567"
+    },
+    {
+      "title": "추가6",
+      "content": "6",
+      "authorId": 3,
+      "id": "1234568"
+    },
+    {
+      "title": "추가7",
+      "content": "7",
+      "authorId": 1,
+      "id": "1234569"
     }
   ]
 }
