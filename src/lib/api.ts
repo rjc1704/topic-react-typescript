@@ -35,7 +35,7 @@ async function handleApiResponse<T>(response: Response): Promise<T> {
 export async function fetchPosts(page: number = 1): Promise<Post[]> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?_page=${page}&_limit=6`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/posts?_page=${page}&_limit=5`,
     );
     return await handleApiResponse<Post[]>(response);
   } catch (error) {
