@@ -1,6 +1,6 @@
 "use client";
 
-interface SelectProps {
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   options: { value: number; label: string }[];
@@ -10,6 +10,7 @@ interface SelectProps {
   className?: string;
   disabled?: boolean;
 }
+
 export default function Select({
   value,
   onChange,

@@ -1,6 +1,6 @@
 "use client";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: "text" | "number" | "email" | "password";
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,6 +10,7 @@ interface InputProps {
   className?: string;
   ref?: React.Ref<HTMLInputElement>;
 }
+
 export default function Input({
   type = "text",
   value,
@@ -18,7 +19,7 @@ export default function Input({
   required = false,
   name,
   className = "",
-  ref,
+  ref = null,
   ...props
 }: InputProps) {
   const baseStyles =
