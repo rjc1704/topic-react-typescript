@@ -7,7 +7,7 @@ import Select from "@/components/ui/Select";
 import { Post } from "@/types";
 
 interface PostFormProps {
-  onSubmit: (formData: Omit<Post, "id">) => Promise<void>;
+  onSubmit: (formData: Omit<Post, "id">) => Promise<void> | void;
   initialData?: Partial<Omit<Post, "id">>;
   isLoading?: boolean;
 }
