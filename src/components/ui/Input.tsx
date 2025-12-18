@@ -12,7 +12,7 @@ export default function Input({
   required = false,
   name,
   className = "",
-  ref,
+  ref = null,
   ...props
 }: any) {
   const baseStyles =
