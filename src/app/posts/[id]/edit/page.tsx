@@ -9,6 +9,11 @@ import { fetchPost, updatePost } from "@/lib/api";
 export default function EditPostPage() {
   // TODO-4: useParams 와 useState 들의 타입을 제네릭으로 정의하세요.
   const { id } = useParams();
+
+  if (!id) {
+    notFound();
+  }
+
   const router = useRouter();
   const [post, setPost] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,11 +22,7 @@ export default function EditPostPage() {
   useEffect(() => {
     const loadPost = async () => {
       try {
-        if (!id) {
-          notFound();
-        }
-
-        const postData = await fetchPost(id);
+        const postData = await fetchPost(id); // id는 이미 보장됨
         setPost(postData);
       } catch {
         notFound();
