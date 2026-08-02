@@ -10,10 +10,6 @@ import { Post } from "@/types";
 export default function EditPostPage() {
   const { id } = useParams<{ id: string }>();
 
-  if (!id) {
-    notFound();
-  }
-
   const router = useRouter();
   const [post, setPost] = useState<Post | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
