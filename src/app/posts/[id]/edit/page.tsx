@@ -10,10 +10,6 @@ export default function EditPostPage() {
   // TODO-4: useParams 와 useState 들의 타입을 제네릭으로 정의하세요.
   const { id } = useParams();
 
-  if (!id) {
-    notFound();
-  }
-
   const router = useRouter();
   const [post, setPost] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
