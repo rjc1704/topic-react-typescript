@@ -16,10 +16,6 @@ export default function EditPostPage() {
   useEffect(() => {
     const loadPost = async () => {
       try {
-        if (!id) {
-          notFound();
-        }
-
         const postData = await fetchPost(id);
         setPost(postData);
       } catch {

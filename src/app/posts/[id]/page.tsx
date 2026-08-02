@@ -6,9 +6,6 @@ import { fetchPost } from "@/lib/api";
 
 export default async function PostPage({ params }: any) {
   const { id } = await params;
-  if (!id) {
-    notFound();
-  }
 
   try {
     const post = await fetchPost(id);
