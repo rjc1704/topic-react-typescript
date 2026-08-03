@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { fetchPosts } from "@/lib/api";
+import { ApiException, fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
+import { Post } from "@/types";
 
 const POSTS_PER_PAGE = 5; // 페이지당 포스트 수
 
@@ -19,7 +20,7 @@ export default function PostList() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
+  } = useInfiniteQuery<Post[], ApiException, Post[], [string], number>({
     queryKey: ["posts"],
     queryFn: ({ pageParam }) => fetchPosts(pageParam),
     getNextPageParam: (lastPage, allPages) => {
